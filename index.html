@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZALLKALTIM | Ultimate Portfolio</title>
+    <style>
+        /* === CSS UTAMA === */
+        :root {
+            --black: #000000;
+            --red: #FF0000;
+            --dark-red: #CC0000;
+            --white: #FFFFFF;
+            --gray: #222222;
+        }
+        
+        body {
+            font-family: 'Montserrat', 'Open Sans', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header */
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 1px solid var(--red);
+        }
+        
+        .profile-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--red);
+            margin: 0 auto 20px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .profile-circle:hover {
+            transform: scale(1.05);
+        }
+        
+        h1 {
+            color: var(--red);
+            font-size: 2.5rem;
+            margin: 10px 0;
+        }
+        
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .nav-btn {
+            background: var(--gray);
+            color: var(--white);
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--red);
+        }
+        
+        /* Sections */
+        .section {
+            display: none;
+            padding: 20px;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        /* Cards */
+        .card {
+            background: var(--gray);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background: var(--red);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            margin: 5px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: var(--dark-red);
+            transform: translateY(-2px);
+        }
+        
+        /* Form */
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background: #333;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 4px;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 1px solid var(--red);
+            color: #777;
+        }
+        
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--gray);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <div class="profile-circle" id="profileImage" style="background-image: url('https://via.placeholder.com/150')"></div>
+            <h1>ZALLKALTIM</h1>
+            <p>Professional Portfolio</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav>
+            <a href="#" class="nav-btn active" data-section="home">Home</a>
+            <a href="#" class="nav-btn" data-section="about">About</a>
+            <a href="#" class="nav-btn" data-section="projects">Projects</a>
+            <a href="#" class="nav-btn" data-section="skills">Skills</a>
+            <a href="#" class="nav-btn" data-section="contact">Contact</a>
+        </nav>
+
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="card">
+                <h2><i class="fas fa-home"></i> Welcome</h2>
+                <p>Hello! I'm ZALLKALTIM. This is my professional portfolio showcasing my work and skills.</p>
+                <div class="quick-links">
+                    <a href="https://wa.me/6285246691849" class="btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a href="#" class="btn" id="groupLink"><i class="fas fa-users"></i> Join Group</a>
+                    <a href="#projects" class="btn projects-btn"><i class="fas fa-briefcase"></i> View Projects</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-bolt"></i> Quick Stats</h2>
+                <div class="stats-container" id="statsContainer">
+                    <!-- Stats will be loaded by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="card">
+                <h2><i class="fas fa-user"></i> About Me</h2>
+                <p id="aboutText">[Your about text here. Click to edit!]</p>
+                <button class="btn" id="editAboutBtn"><i class="fas fa-edit"></i> Edit</button>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-history"></i> Experience</h2>
+                <div id="experienceContainer">
+                    <div class="experience-item">
+                        <h3>Job Title 1</h3>
+                        <p class="date">2020 - Present</p>
+                        <p class="description">Description of your role and achievements.</p>
+                    </div>
+                    <!-- More experiences can be added via JS -->
+                </div>
+                <button class="btn" id="addExperienceBtn"><i class="fas fa-plus"></i> Add Experience</button>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="card">
+                <h2><i class="fas fa-project-diagram"></i> My Projects</h2>
+                <div id="projectsContainer">
+                    <!-- Projects will be loaded by JS -->
+                </div>
+                <button class="btn" id="addProjectBtn"><i class="fas fa-plus"></i> Add Project</button>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <div class="card">
+                <h2><i class="fas fa-code"></i> Skills</h2>
+                <div id="skillsContainer">
+                    <!-- Skills will be loaded by JS -->
+                </div>
+                <button class="btn" id="addSkillBtn"><i class="fas fa-plus"></i> Add Skill</button>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="card">
+                <h2><i class="fas fa-envelope"></i> Contact Me</h2>
+                <form id="contactForm">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <input type="text" placeholder="Subject">
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Send Message</button>
+                </form>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-share-alt"></i> Social Media</h2>
+                <div class="social-links">
+                    <a href="#" class="btn social-btn" data-platform="instagram"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="#" class="btn social-btn" data-platform="linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="#" class="btn social-btn" data-platform="github"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://wa.me/6285246691849" class="btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© <span id="currentYear"></span> ZALLKALTIM. All rights reserved.</p>
+    </footer>
+
+    <!-- Embedded JavaScript -->
+    <script>
+        // ===== CORE FUNCTIONALITY =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Navigation
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('data-section');
+                    
+                    // Update active nav button
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show corresponding section
+                    document.querySelectorAll('.section').forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    document.getElementById(sectionId).classList.add('active');
+                });
+            });
+            
+            // Dark mode toggle
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            darkModeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('light-mode');
+                if (document.body.classList.contains('light-mode')) {
+                    this.innerHTML = '<i class="fas fa-sun"></i>';
+                    // You would add light mode styles here
+                } else {
+                    this.innerHTML = '<i class="fas fa-moon"></i>';
+                }
+            });
+            
+            // Profile image changer
+            document.getElementById('profileImage').addEventListener('click', function() {
+                const newImage = prompt("Enter your profile image URL:", this.style.backgroundImage.slice(5, -2));
+                if (newImage) {
+                    this.style.backgroundImage = `url('${newImage}')`;
+                    localStorage.setItem('profileImage', newImage);
+                }
+            });
+            
+            // Load saved profile image
+            if (localStorage.getItem('profileImage')) {
+                document.getElementById('profileImage').style.backgroundImage = `url('${localStorage.getItem('profileImage')}')`;
+            }
+            
+            // Group link setup
+            document.getElementById('groupLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                const savedLink = localStorage.getItem('groupLink') || "https://example.com/yourgroup";
+                const newLink = prompt("Enter your group link:", savedLink);
+                if (newLink) {
+                    localStorage.setItem('groupLink', newLink);
+                    this.href = newLink;
+                    window.open(newLink, '_blank');
+                }
+            });
+            
+            // ===== ABOUT SECTION =====
+            // Edit about text
+            const aboutText = document.getElementById('aboutText');
+            const editAboutBtn = document.getElementById('editAboutBtn');
+            
+            if (localStorage.getItem('aboutText')) {
+                aboutText.textContent = localStorage.getItem('aboutText');
+            }
+            
+            editAboutBtn.addEventListener('click', function() {
+                const newAbout = prompt("Edit your about text:", aboutText.textContent);
+                if (newAbout !== null) {
+                    aboutText.textContent = newAbout;
+                    localStorage.setItem('aboutText', newAbout);
+                }
+            });
+            
+            // ===== EXPERIENCE SECTION =====
+            const experienceContainer = document.getElementById('experienceContainer');
+            const addExperienceBtn = document.getElementById('addExperienceBtn');
+            
+            // Load saved experiences
+            function loadExperiences() {
+                const savedExperiences = JSON.parse(localStorage.getItem('experiences')) || [];
+                experienceContainer.innerHTML = '';
+                
+                savedExperiences.forEach((exp, index) => {
+                    const expItem = document.createElement('div');
+                    expItem.className = 'experience-item';
+                    expItem.innerHTML = `
+                        <h3>${exp.title}</h3>
+                        <p class="date">${exp.date}</p>
+                        <p class="description">${exp.description}</p>
+                        <button class="btn delete-btn" data-index="${index}"><i class="fas fa-trash"></i> Delete</button>
+                    `;
+                    experienceContainer.appendChild(expItem);
+                });
+                
+                // Add delete event listeners
+                document.querySelectorAll('.delete-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        deleteExperience(index);
+                    });
+                });
+            }
+            
+            function deleteExperience(index) {
+                const savedExperiences = JSON.parse(localStorage.getItem('experiences')) || [];
+                savedExperiences.splice(index, 1);
+                localStorage.setItem('experiences', JSON.stringify(savedExperiences));
+                loadExperiences();
+            }
+            
+            addExperienceBtn.addEventListener('click', function() {
+                const title = prompt("Job Title:");
+                if (!title) return;
+                
+                const date = prompt("Date Range (e.g., 2020 - Present):");
+                const description = prompt("Description:");
+                
+                const newExperience = {
+                    title,
+                    date: date || "",
+                    description: description || ""
+                };
+                
+                const savedExperiences = JSON.parse(localStorage.getItem('experiences')) || [];
+                savedExperiences.push(newExperience);
+                localStorage.setItem('experiences', JSON.stringify(savedExperiences));
+                loadExperiences();
+            });
+            
+            // Initial load
+            loadExperiences();
+            
+            // ===== PROJECTS SECTION =====
+            const projectsContainer = document.getElementById('projectsContainer');
+            const addProjectBtn = document.getElementById('addProjectBtn');
+            
+            // Load saved projects
+            function loadProjects() {
+                const savedProjects = JSON.parse(localStorage.getItem('projects')) || [];
+                projectsContainer.innerHTML = '';
+                
+                savedProjects.forEach((project, index) => {
+                    const projectItem = document.createElement('div');
+                    projectItem.className = 'project-item card';
+                    projectItem.style.margin = '10px 0';
+                    projectItem.innerHTML = `
+                        <h3>${project.name}</h3>
+                        <p>${project.description}</p>
+                        ${project.link ? `<a href="${project.link}" class="btn" target="_blank"><i class="fas fa-external-link-alt"></i> View</a>` : ''}
+                        <button class="btn delete-btn" data-index="${index}"><i class="fas fa-trash"></i> Delete</button>
+                    `;
+                    projectsContainer.appendChild(projectItem);
+                });
+                
+                // Add delete event listeners
+                document.querySelectorAll('.project-item .delete-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        deleteProject(index);
+                    });
+                });
+            }
+            
+            function deleteProject(index) {
+                const savedProjects = JSON.parse(localStorage.getItem('projects')) || [];
+                savedProjects.splice(index, 1);
+                localStorage.setItem('projects', JSON.stringify(savedProjects));
+                loadProjects();
+            }
+            
+            addProjectBtn.addEventListener('click', function() {
+                const name = prompt("Project Name:");
+                if (!name) return;
+                
+                const description = prompt("Project Description:");
+                const link = prompt("Project URL (leave empty if none):");
+                
+                const newProject = {
+                    name,
+                    description: description || "",
+                    link: link || ""
+                };
+                
+                const savedProjects = JSON.parse(localStorage.getItem('projects')) || [];
+                savedProjects.push(newProject);
+                localStorage.setItem('projects', JSON.stringify(savedProjects));
+                loadProjects();
+            });
+            
+            // Initial load
+            loadProjects();
+            
+            // ===== SKILLS SECTION =====
+            const skillsContainer = document.getElementById('skillsContainer');
+            const addSkillBtn = document.getElementById('addSkillBtn');
+            
+            // Load saved skills
+            function loadSkills() {
+                const savedSkills = JSON.parse(localStorage.getItem('skills')) || [];
+                skillsContainer.innerHTML = '';
+                
+                savedSkills.forEach((skill, index) => {
+                    const skillItem = document.createElement('div');
+                    skillItem.className = 'skill-item';
+                    skillItem.style.display = 'inline-block';
+                    skillItem.style.margin = '5px';
+                    skillItem.innerHTML = `
+                        <span class="btn">${skill.name} 
+                            <span class="skill-level">${skill.level ? `(${skill.level})` : ''}</span>
+                            <button class="delete-skill-btn" data-index="${index}" style="background: none; border: none; color: white; cursor: pointer;">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </span>
+                    `;
+                    skillsContainer.appendChild(skillItem);
+                });
+                
+                // Add delete event listeners
+                document.querySelectorAll('.delete-skill-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        deleteSkill(index);
+                    });
+                });
+            }
+            
+            function deleteSkill(index) {
+                const savedSkills = JSON.parse(localStorage.getItem('skills')) || [];
+                savedSkills.splice(index, 1);
+                localStorage.setItem('skills', JSON.stringify(savedSkills));
+                loadSkills();
+            }
+            
+            addSkillBtn.addEventListener('click', function() {
+                const name = prompt("Skill Name:");
+                if (!name) return;
+                
+                const level = prompt("Skill Level (e.g., Beginner, Intermediate, Expert):");
+                
+                const newSkill = {
+                    name,
+                    level: level || ""
+                };
+                
+                const savedSkills = JSON.parse(localStorage.getItem('skills')) || [];
+                savedSkills.push(newSkill);
+                localStorage.setItem('skills', JSON.stringify(savedSkills));
+                loadSkills();
+            });
+            
+            // Initial load
+            loadSkills();
+            
+            // ===== CONTACT SECTION =====
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Message sent! (This is a demo - in a real site, this would connect to a backend)');
+                this.reset();
+            });
+            
+            // Social media links setup
+            document.querySelectorAll('.social-btn').forEach(btn => {
+                const platform = btn.getAttribute('data-platform');
+                const savedLink = localStorage.getItem(`${platform}Link`);
+                
+                if (savedLink) {
+                    btn.href = savedLink;
+                }
+                
+                btn.addEventListener('click', function(e) {
+                    if (!this.href || this.href === '#') {
+                        e.preventDefault();
+                        const newLink = prompt(`Enter your ${platform} URL:`);
+                        if (newLink) {
+                            localStorage.setItem(`${platform}Link`, newLink);
+                            this.href = newLink;
+                            window.open(newLink, '_blank');
+                        }
+                    }
+                });
+            });
+            
+            // ===== STATS SECTION =====
+            // This is just for demo - in a real app you might connect to an API
+            const statsContainer = document.getElementById('statsContainer');
+            const stats = [
+                { name: 'Projects Completed', value: localStorage.getItem('projectCount') || '12', icon: 'fa-project-diagram' },
+                { name: 'Happy Clients', value: localStorage.getItem('clientCount') || '8', icon: 'fa-smile' },
+                { name: 'Years Experience', value: localStorage.getItem('experienceYears') || '3+', icon: 'fa-calendar-alt' }
+            ];
+            
+            stats.forEach(stat => {
+                const statElement = document.createElement('div');
+                statElement.style.display = 'inline-block';
+                statElement.style.width = '30%';
+                statElement.style.textAlign = 'center';
+                statElement.style.padding = '10px';
+                statElement.innerHTML = `
+                    <i class="fas ${stat.icon}" style="font-size: 2rem; color: var(--red);"></i>
+                    <h3 style="margin: 5px 0;">${stat.value}</h3>
+                    <p>${stat.name}</p>
+                `;
+                statsContainer.appendChild(statElement);
+            });
+        });
+    </script>
+</body>
+</html>
